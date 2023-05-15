@@ -1,5 +1,7 @@
 import pygame, sys, time, random
 
+# pantalla de juego 
+
 pygame.init()
 
 play_surface = pygame.display.set_mode((500, 500))
@@ -8,7 +10,7 @@ font = pygame.font.Font(None, 30)
 
 fps = pygame.time.Clock()
 
-
+# funcion para que las manzanas aparezcan de manera aleatoria en la pantalla
 def comida():
     random_pos = random.randint(0,49)*10
     manzana = [random_pos, random_pos]
@@ -16,7 +18,7 @@ def comida():
 
 
 def juego():
-
+# caracteristicas inciales de el personaje y el juego
     cabeza = [100, 50]
     cuerpo = [[100,50],[90,50],[80,50]]
     change = "RIGHT"
@@ -25,7 +27,7 @@ def juego():
     score = 0
 
     while run:
-
+# loop para los movimientos del personaje
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
@@ -38,6 +40,7 @@ def juego():
                     change = "UP"
                 if event.key == pygame.K_DOWN:
                     change = "DOWN"
+        # Defnición de movimientos            
         if change == "RIGHT":
             cabeza[0] += 10
         if change == "LEFT":
@@ -48,20 +51,21 @@ def juego():
             cabeza[1] += 10
 
         cuerpo.insert(0, list(cabeza))
-
+        # Aumento score - aumento cuerpo
         if cabeza == manzana:
             manzana= comida()
             score += 1
             print(score)
         else:
             cuerpo.pop()
-        
+        # Si choca consimismo pierde
         head = cuerpo[-1]
         for i in range(len(cuerpo) - 1): 
             part = cuerpo[i]
             if head[0] == part[0] and head[1] == part[1]:
                 run = False
                 print("YOU LOSE")
+
 
         play_surface.fill((0,0,0))
 
@@ -73,11 +77,12 @@ def juego():
         text = font.render(str(score),0,(200,60,80))
         play_surface.blit(text, (480,20))
 
+        # Aumento de velocidad
         if score < 10:
             fps.tick(10)
         if score >= 10:
             fps.tick(20)
-
+        # si choca contra las paredes de la pantalla pierde
         if cabeza[0] <= 0 or cabeza[0] >= 500:
             run = False
             print("YOU LOSE")
