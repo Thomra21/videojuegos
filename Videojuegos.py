@@ -17,7 +17,7 @@ mensaje=fuente.render(text,1,(255,255,255))
 
 mensaje_rect = mensaje.get_rect()
 mensaje_rect.centerx = screen.get_rect().centerx
-
+# holas mundo 
 star_img = pygame.image.load('Pacman.png').convert_alpha()
 star_img2 = pygame.image.load('serpiente.png').convert_alpha()
 star_img3 = pygame.image.load('dinosaurio.png').convert_alpha()
