@@ -24,6 +24,7 @@ star_img2 = pygame.image.load('dinosaurio.png').convert_alpha()
 star_img3 = pygame.image.load('serpiente.png').convert_alpha()
 
 class button():
+    # funcionalidad imagenes
     def __init__(self,x,y, image):
         self.image= image
         self.rect = self.image.get_rect()
@@ -60,7 +61,7 @@ run = True
 while run:
     screen.fill((0,0,0))
     screen.blit(mensaje, mensaje_rect)
-# se importo subprocess paraejecutar los juegos
+# se importo subprocess para ejecutar los juegos
     if star_button.dibujo():
         subprocess.run(['python','pacman.py'])
     if star_button2.dibujo():
