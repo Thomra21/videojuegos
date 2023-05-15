@@ -9,20 +9,19 @@ import subprocess
 altura = 700
 ancho = 1200
 
- 
 screen = pygame.display.set_mode((ancho, altura))
 pygame.display.set_caption('Videojuegos')
-fuente=pygame.font.Font(None,50) 
+fuente=pygame.font.Font(None,50)#fuente(fuente tipo, fuente tamaño)
 text="Videojuegos para tu entretenimiento :)"
-mensaje=fuente.render(text,1,(255,255,255)) 
+mensaje=fuente.render(text,1,(255,255,255))
 
 mensaje_rect = mensaje.get_rect() 
 mensaje_rect.centerx = screen.get_rect().centerx
 
 # Se agregan las imagenes  
 star_img = pygame.image.load('Pacman.png').convert_alpha()
-star_img2 = pygame.image.load('serpiente.png').convert_alpha()
-star_img3 = pygame.image.load('dinosaurio.png').convert_alpha()
+star_img2 = pygame.image.load('dinosaurio.png').convert_alpha()
+star_img3 = pygame.image.load('serpiente.png').convert_alpha()
 
 class button():
     def __init__(self,x,y, image):
@@ -32,11 +31,11 @@ class button():
         self.clicked = False
     def dibujo(self):
         action= False
-        #get mouse position
+        # optener posición del mouse
         pos = pygame.mouse.get_pos()
         
 
-        #check mouseover and clicked conditions
+        # verificar si el mouse esta sobre la imagen y si se presiona
         if self.rect.collidepoint(pos):
             if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
                 self.clicked = True
@@ -56,19 +55,18 @@ star_button2 = button(450,200, star_img2)
 star_button3 = button(800,200, star_img3)
 
 
-#game loop
+# loop principal de la interfaz principal 
 run = True
 while run:
     screen.fill((0,0,0))
-    #screen.blit(mensaje,(15,10))
     screen.blit(mensaje, mensaje_rect)
-
+# se importo subprocess paraejecutar los juegos
     if star_button.dibujo():
         subprocess.run(['python','pacman.py'])
     if star_button2.dibujo():
-        subprocess.run(['python','snake.py'])
-    if star_button3.dibujo():
         subprocess.run(['python','dinosaurio.py'])
+    if star_button3.dibujo():
+        subprocess.run(['python','snake.py'])
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
