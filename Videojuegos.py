@@ -5,19 +5,21 @@ pygame.init()
 import os
 import subprocess
 
-# Crear display window
+# Crear ventana principal
 altura = 700
 ancho = 1200
 
+ 
 screen = pygame.display.set_mode((ancho, altura))
 pygame.display.set_caption('Videojuegos')
-fuente=pygame.font.Font(None,50) #Fuente(tipo de fuente, tamaño de fuente)
+fuente=pygame.font.Font(None,50)
 text="Videojuegos para tu entretenimiento :)"
-mensaje=fuente.render(text,1,(255,255,255))
+mensaje=fuente.render(text,1,(255,255,255)) 
 
-mensaje_rect = mensaje.get_rect()
+mensaje_rect = mensaje.get_rect() 
 mensaje_rect.centerx = screen.get_rect().centerx
-# holas mundo 
+
+# Se agregan las imagenes  
 star_img = pygame.image.load('Pacman.png').convert_alpha()
 star_img2 = pygame.image.load('serpiente.png').convert_alpha()
 star_img3 = pygame.image.load('dinosaurio.png').convert_alpha()
@@ -47,6 +49,7 @@ class button():
         screen.blit(self.image,(self.rect.x, self.rect.y))
         return action
 
+# Se le asigna posición a cada uno de las imagenes en la pantalla
 
 star_button = button(100,200, star_img)
 star_button2 = button(450,200, star_img2)
