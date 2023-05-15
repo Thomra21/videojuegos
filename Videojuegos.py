@@ -12,7 +12,7 @@ ancho = 1200
  
 screen = pygame.display.set_mode((ancho, altura))
 pygame.display.set_caption('Videojuegos')
-fuente=pygame.font.Font(None,50)
+fuente=pygame.font.Font(None,50) 
 text="Videojuegos para tu entretenimiento :)"
 mensaje=fuente.render(text,1,(255,255,255)) 
 
